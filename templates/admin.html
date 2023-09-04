@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      .alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+      .shadow {
+    box-shadow: 5px 5px 20px 5px rgba(0,0,0,.50);
+}
+      body{
+			background: #466368;
+  			background: linear-gradient(to right bottom, #648880, #293f50);
+		}
+		div {
+			background: #466368;
+  			background: linear-gradient(to right bottom, #648880, #293f50);
+			}
+        .parent{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+		table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: center;
+}
+
+th {
+  background-color: #f7f7f7;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+		</style>
+<meta charset="utf-8">
+<title>Movie Buzz | Admin</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+	<div class="row">	
+		<h1 style="padding-left: 10%;">Admin Profile</h1>
+	</div>
+    <br>
+    <div class="row">	
+        Logged in : <strong>{{session.name}} | <a href="{{ url_for('logout') }}"> Logout</a>
+    </div>
+    <br><br>
+    <form action="admin_submit" method="post">
+    {% if mesage is defined and mesage %}
+			<div1 class="alert alert-warning">{{ mesage }}</div1>
+		{% endif %}
+    </form>
+    
+    <br>
+<form action="admin_sbutton" method = "post">
+    <select name="select">
+        <option value="edit">Edit</option>
+        <option value="remove">Remove</option>
+        <option value="add">Add</option>
+    </select>
+    <input type="text" name="movie_id" placeholder="Movie ID">
+    <input type="text" name="movie_title" placeholder="Movie Title">
+    <input type="text" name="movie_year" placeholder="Movie Year">
+    <input type="text" name="movie_director" placeholder="Movie Director">
+    <button type="submit" class="btn btn-primary shadow" >Submit</button></form>
+    <br>
+<div class="row">
+<table style="width:100%; display: relative; justify-content: center;">
+    <thead >
+        <div style="position: relative;">
+            <tr>
+              <th scope="col">Movie ID</th>
+              <th scope="col">Movie Title</th>
+              <th scope="col">Movie Year</th>
+              <th scope="col">Movie Director</th>
+            </tr>
+          </div>
+    </thead>
+    {% if request.endpoint == 'search' %}
+    <tr>
+        {% if size > 0 %}
+            {% for x in range(0,size) %}
+            <tr>
+            <td scope="col">{{s_movie[x].movie_id}}</td>
+            <td scope="col">{{s_movie[x].movie_title}}</td>
+            <td scope="col">{{s_movie[x].movie_year}}</td>
+            <td scope="col">{{s_movie[x].movie_director}}</td>
+            </tr>
+            {% endfor %}
+        {% elif size == 0 %}
+        <td scope="col">{{s_movie.movie_id}}</td>
+        <td scope="col">{{s_movie.movie_title}}</td>
+        <td scope="col">{{s_movie.movie_year}}</td>
+        <td scope="col">{{s_movie.movie_director}}</td>
+        {% endif %}
+    </tr>
+    {% elif request.endpoint == 'login' or request.endpoint == 'clear' or request.endpoint == 'admin_sbutton'  %}
+    {% for x in range(0,size) %}
+    <tr>
+        <td scope="col">{{data[x].movie_id}}</td>
+        <td scope="col">{{data[x].movie_title}}</td>
+        <td scope="col">{{data[x].movie_year}}</td>
+        <td scope="col">{{data[x].movie_director}}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+    </table>
+    </div>
+</body>
+</html>
+
+</html>

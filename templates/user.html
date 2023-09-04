@@ -1,0 +1,106 @@
+<html>
+<head>
+	<style>
+		body{
+			background-image: url(bg.jpg);
+			background: #466368;
+  			background: linear-gradient(to right bottom, #648880, #293f50);
+		}
+		div {
+			background: #466368;
+  			background: linear-gradient(to right bottom, #648880, #293f50);
+			}
+		table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 0px solid #ddd;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: center;
+}
+
+th {
+  background-color: #f7f7f7;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+		</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Movie Buzz</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">              
+</head>
+<body>
+<div class="container">
+	<div class="row">	
+		<h1>User Profile</h1>
+	</div>
+	<br>
+	<div class="row">	
+		Logged in : <strong>{{session.name}} | <a href="{{ url_for('logout') }}"> Logout</a>
+	</div>
+	<br><br>
+	<div>
+		<form action="search" method = "post">
+			Search by ID:<input type ="text", placeholder="Movie ID", name='movie_id'>
+			Search by Title:<input type ="text", placeholder="Movie Title", name='movie_title'>
+			Search by Year:<input type ="text", placeholder="Movie Year", name='movie_year'>
+				<button type="submit" class="btn btn-primary">Search</button></form>
+				<form action="clear" method="'post">
+					<button type="submit" class="btn btn-primary">Clear Search</button>
+					</form>
+				<div class="row">
+					<table style="width:100%">
+					<thead>
+						<tr>
+							<th scope="col">Movie ID</th>
+							<th scope="col">Movie Title</th>
+							<th scope="col">Movie Year</th>
+							<th scope="col">Movie Director</th>
+						</tr>
+					</thead>
+					{% if request.endpoint == 'search' %}
+					<tr>
+						{% if size > 0 %}
+							{% for x in range(0,size) %}
+							<tr>
+							<td scope="col">{{s_movie[x].movie_id}}</td>
+							<td scope="col">{{s_movie[x].movie_title}}</td>
+							<td scope="col">{{s_movie[x].movie_year}}</td>
+							<td scope="col">{{s_movie[x].movie_director}}</td>
+							</tr>
+							{% endfor %}
+						{% elif size == 0 %}
+						<td scope="col">{{s_movie.movie_id}}</td>
+						<td scope="col">{{s_movie.movie_title}}</td>
+						<td scope="col">{{s_movie.movie_year}}</td>
+						<td scope="col">{{s_movie.movie_director}}</td>
+						{% endif %}
+			        </tr>
+					{% elif request.endpoint == 'login' or request.endpoint == 'clear'  %}
+					{% for x in range(0,size) %}
+			        <tr>
+						<td scope="col">{{data[x].movie_id}}</td>
+						<td scope="col">{{data[x].movie_title}}</td>
+						<td scope="col">{{data[x].movie_year}}</td>
+						<td scope="col">{{data[x].movie_director}}</td>
+			        </tr>
+					{% endfor %}
+					{% endif %}
+					</table>				
+	</div>
+</div>
+</body>
+</html>

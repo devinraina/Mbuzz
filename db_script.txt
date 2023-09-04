@@ -1,0 +1,58 @@
+create database user_system;
+use user_system;
+create table `user`(
+`userid` int Not null primary key auto_increment,
+`name` varchar(100) not null,
+`email` varchar(100),
+`password` varchar(255) not null
+)ENGINE=InnoDB ;
+
+CREATE TABLE movies (
+ `movie_id` integer not null primary key auto_increment,
+  `movie_title` varchar(100) NOT NULL,
+  `movie_year` varchar(100) NOT NULL,
+  `movie_director` varchar(255) NOT NULL
+) ENGINE=InnoDB ;
+
+insert into movies (`movie_title`,`movie_year`,`movie_director`)values('The Shawshank Redemption', '1994', 'Frank Darabont'),
+  ('The Godfather', '1972', 'Francis Ford Coppola'),
+  ('The Dark Knight', '2008', 'Christopher Nolan'),
+  ('The Lord of the Rings: The Return of the King', '2003', 'Peter Jackson'),
+  ('Pulp Fiction', '1994', 'Quentin Tarantino'),
+  ('Schindle''s List', '1993', 'Steven Spielberg'),
+  ('12 Angry Men', '1957', 'Sidney Lumet'),
+  ('The Good, the Bad and the Ugly', '1966', 'Sergio Leone'),
+  ('The Godfather Part II', '1974', 'Francis Ford Coppola'),
+  ('Fight Club', '1999', 'David Fincher'),
+  ('The Lord of the Rings: The Fellowship of the Ring', '2001', 'Peter Jackson'),
+  ('Star Wars: Episode IV - A New Hope', '1977', 'George Lucas'),
+  ('The Matrix', 1999, 'The Wachowskis'),
+  ('Casablanca', 1942, 'Michael Curtiz'),
+  ('Forrest Gump', 1994, 'Robert Zemeckis'),
+  ('The Silence of the Lambs', 1991, 'Jonathan Demme'),
+  ('The Lord of the Rings: The Two Towers', 2002, 'Peter Jackson'),
+  ('City of God', 2002, 'Fernando Meirelles'),
+  ('Whiplash', 2014, 'Damien Chazelle'),
+  ('The Big Lebowski', 1998, 'Joel Coen and Ethan Coen'),
+  ('The Shining', 1980, 'Stanley Kubrick'),
+  ('The Departed', 2006, 'Martin Scorsese'),
+  ('Memento', 2000, 'Christopher Nolan'),
+  ('Django Unchained', 2012, 'Quentin Tarantino'),
+  ('The Grand Budapest Hotel', 2014, 'Wes Anderson'),
+  ('The Social Network', 2010, 'David Fincher'),
+  ('Interstellar', 2014, 'Christopher Nolan'),
+  ('The Wolf of Wall Street', 2013, 'Martin Scorsese'),
+  ('No Country for Old Men', 2007, 'Joel Coen and Ethan Coen'),
+  ('The Shape of Water', 2017, 'Guillermo del Toro'),
+  ('Parasite', 2019, 'Bong Joon-ho'),
+  ('1917', 2019, 'Sam Mendes'),
+  ('The Irishman', 2019, 'Martin Scorsese'),
+  ('Once Upon a Time in Hollywood', 2019, 'Quentin Tarantino'),
+  ('Joker', 2019, 'Todd Phillips'),
+  ('Minari', 2020, 'Lee Isaac Chung'),
+  ('Nomadland', 2020, 'Chloé Zhao'),
+  ('The Power of the Dog', 2021, 'Jane Campion'),
+  ('CODA', 2021, 'Siân Heder'),
+  ('Dune', 2021, 'Denis Villeneuve'),
+  ('The Batman', 2022, 'Matt Reeves'),
+  ('Top Gun: Maverick', 2022, 'Joseph Kosinski');
